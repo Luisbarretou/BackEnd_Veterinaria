@@ -29,7 +29,7 @@ public class Historia implements Serializable {
     @Column(name = "historia_id")
     private Integer historiaId;
 
-    @Column(name = "historia_fechaCrea")
+    @Column(name = "historia_fechacreacion")
     private String historiaFechaCreacion;
 
     @Column(name = "historia_estado", length = 50)
