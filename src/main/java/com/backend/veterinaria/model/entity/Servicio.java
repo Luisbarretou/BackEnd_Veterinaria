@@ -1,13 +1,27 @@
 package com.backend.veterinaria.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "servicio")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Audited
 public class Servicio implements Serializable {
 
     public static final long serialVersionUID = 1L;
@@ -23,56 +37,26 @@ public class Servicio implements Serializable {
     @Column(name = "servicio_tipo", length = 50)
     private String servicioTipo;
 
+    @Column(name = "servicio_precio", columnDefinition = "decimal(8,2)")
+    private float servicioPrecio;
+
+    @Column(name = "servicio_fechacreacion", length = 50)
+    private String servicioFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
+
+    @Column(name = "servicio_estado", length = 50)
+    private String servicioEstado = "Habilitado";
+
     @OneToMany
     @JoinColumn(name = "servicio_id")
+    @JsonBackReference
+    @NotAudited
     private List<DetalleHistoria> detallesHistoria = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "detalle_serv_prod",
             joinColumns = @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id"),
             inverseJoinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "producto_id"))
+    @NotAudited
     private List<Producto> productos = new ArrayList<>();
 
-    public Servicio() {
-    }
-
-    public Integer getServicioId() {
-        return servicioId;
-    }
-
-    public void setServicioId(Integer servicioId) {
-        this.servicioId = servicioId;
-    }
-
-    public String getServicioCategoria() {
-        return servicioCategoria;
-    }
-
-    public void setServicioCategoria(String servicioCategoria) {
-        this.servicioCategoria = servicioCategoria;
-    }
-
-    public String getServicioTipo() {
-        return servicioTipo;
-    }
-
-    public void setServicioTipo(String servicioTipo) {
-        this.servicioTipo = servicioTipo;
-    }
-
-    public List<DetalleHistoria> getDetallesHistoria() {
-        return detallesHistoria;
-    }
-
-    public void setDetallesHistoria(List<DetalleHistoria> detallesHistoria) {
-        this.detallesHistoria = detallesHistoria;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
 }

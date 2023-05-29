@@ -53,8 +53,8 @@ public class Cliente implements Serializable {
     private String clienteFchaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
 
     @OneToMany
-    @JsonBackReference
     @JoinColumn(name = "cliente_id")
+    @JsonBackReference
     @NotAudited
     private List<Mascota> mascotas = new ArrayList<>();
 

@@ -1,11 +1,24 @@
 package com.backend.veterinaria.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "detalle_historia")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Audited
 public class DetalleHistoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -15,13 +28,13 @@ public class DetalleHistoria implements Serializable {
     @Column(name = "dethistoria_id")
     private Integer detHistoriaId;
 
-    @Column(name = "dethistoria_fecha")
-    private String detHistoriaFecha;
+    @Column(name = "dethistoria_fechacreacion", length = 50)
+    private String detHistoriaFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
 
-    @Column(name = "dethistoria_fechaprogramada")
+    @Column(name = "dethistoria_fechaprogramada", length = 50)
     private String detHistoriaFechaProgramada;
 
-    @Column(name = "dethistoria_fechaaplicada")
+    @Column(name = "dethistoria_fechaaplicada", length = 50)
     private String detHistoriaFechaAplicada;
 
     @Column(name = "dethistoria_farmaco", length = 50)
@@ -36,106 +49,23 @@ public class DetalleHistoria implements Serializable {
     @Column(name = "dethistoria_tratamiento", length = 250)
     private String detHistoriaTratamiento;
 
+    @Column(name = "dethistoria_estado", length = 50)
+    private String detHistoriaEstado = "Habilitado";
+
     @ManyToOne
     @JoinColumn(name = "historia_id")
+    @JsonBackReference
+    @Audited
     private Historia historia;
 
     @ManyToOne
     @JoinColumn(name = "servicio_id")
+    @Audited
     private Servicio servicio;
 
     @ManyToOne
     @JoinColumn(name = "especialista_id")
+    @Audited
     private Especialista especialista;
 
-    public DetalleHistoria() {
-    }
-
-    public Integer getDetHistoriaId() {
-        return detHistoriaId;
-    }
-
-    public void setDetHistoriaId(Integer detHistoriaId) {
-        this.detHistoriaId = detHistoriaId;
-    }
-
-    public String getDetHistoriaFecha() {
-        return detHistoriaFecha;
-    }
-
-    public void setDetHistoriaFecha(String detHistoriaFecha) {
-        this.detHistoriaFecha = detHistoriaFecha;
-    }
-
-    public String getDetHistoriaFechaProgramada() {
-        return detHistoriaFechaProgramada;
-    }
-
-    public void setDetHistoriaFechaProgramada(String detHistoriaFechaProgramada) {
-        this.detHistoriaFechaProgramada = detHistoriaFechaProgramada;
-    }
-
-    public String getDetHistoriaFechaAplicada() {
-        return detHistoriaFechaAplicada;
-    }
-
-    public void setDetHistoriaFechaAplicada(String detHistoriaFechaAplicada) {
-        this.detHistoriaFechaAplicada = detHistoriaFechaAplicada;
-    }
-
-    public String getDetHistoriaFarmaco() {
-        return detHistoriaFarmaco;
-    }
-
-    public void setDetHistoriaFarmaco(String detHistoriaFarmaco) {
-        this.detHistoriaFarmaco = detHistoriaFarmaco;
-    }
-
-    public float getDetHistoriaPeso() {
-        return detHistoriaPeso;
-    }
-
-    public void setDetHistoriaPeso(float detHistoriaPeso) {
-        this.detHistoriaPeso = detHistoriaPeso;
-    }
-
-    public String getDetHistoriaObservaciones() {
-        return detHistoriaObservaciones;
-    }
-
-    public void setDetHistoriaObservaciones(String detHistoriaObservaciones) {
-        this.detHistoriaObservaciones = detHistoriaObservaciones;
-    }
-
-    public String getDetHistoriaTratamiento() {
-        return detHistoriaTratamiento;
-    }
-
-    public void setDetHistoriaTratamiento(String detHistoriaTratamiento) {
-        this.detHistoriaTratamiento = detHistoriaTratamiento;
-    }
-
-    public Historia getHistoria() {
-        return historia;
-    }
-
-    public void setHistoria(Historia historia) {
-        this.historia = historia;
-    }
-
-    public Servicio getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(Servicio servicio) {
-        this.servicio = servicio;
-    }
-
-    public Especialista getEspecialista() {
-        return especialista;
-    }
-
-    public void setEspecialista(Especialista especialista) {
-        this.especialista = especialista;
-    }
 }

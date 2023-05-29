@@ -1,13 +1,27 @@
 package com.backend.veterinaria.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "especialista")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Audited
 public class Especialista implements Serializable {
 
     public static final long serialVersionUID = 1L;
@@ -29,58 +43,16 @@ public class Especialista implements Serializable {
     @Column(name ="especialista_area", length = 50)
     private String especialistaArea;
 
+    @Column(name = "especialista_fechacreacion", length = 50)
+    private String especialistaFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
+
+    @Column(name = "especialista_estado", length = 50)
+    private String especialistaEstado = "Habilitado";
+
     @OneToMany
     @JoinColumn(name = "especialista_id")
+    @JsonBackReference
+    @NotAudited
     private List<DetalleHistoria> detallesHistoria = new ArrayList<>();
 
-    public Especialista() {
-    }
-
-    public Integer getEspecialistaId() {
-        return especialistaId;
-    }
-
-    public void setEspecialistaId(Integer especialistaId) {
-        this.especialistaId = especialistaId;
-    }
-
-    public String getEspecialistaDNI() {
-        return especialistaDNI;
-    }
-
-    public void setEspecialistaDNI(String especialistaDNI) {
-        this.especialistaDNI = especialistaDNI;
-    }
-
-    public String getEspecialistaNombres() {
-        return especialistaNombres;
-    }
-
-    public void setEspecialistaNombres(String especialistaNombres) {
-        this.especialistaNombres = especialistaNombres;
-    }
-
-    public String getEspecialistaTelefono() {
-        return especialistaTelefono;
-    }
-
-    public void setEspecialistaTelefono(String especialistaTelefono) {
-        this.especialistaTelefono = especialistaTelefono;
-    }
-
-    public String getEspecialistaArea() {
-        return especialistaArea;
-    }
-
-    public void setEspecialistaArea(String especialistaArea) {
-        this.especialistaArea = especialistaArea;
-    }
-
-    public List<DetalleHistoria> getDetallesHistoria() {
-        return detallesHistoria;
-    }
-
-    public void setDetallesHistoria(List<DetalleHistoria> detallesHistoria) {
-        this.detallesHistoria = detallesHistoria;
-    }
 }

@@ -1,5 +1,6 @@
 package com.backend.veterinaria.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,7 +55,7 @@ public class Mascota implements Serializable {
     @Column(name = "mascota_estado", length = 50)
     private String mascotaEstado = "Habilitado";
 
-    @Column(length = 50,name = "mascota_fchacreacion")
+    @Column(name = "mascota_fchacreacion", length = 50)
     private String mascotaFchaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
 
     @ManyToOne
@@ -64,6 +65,7 @@ public class Mascota implements Serializable {
 
     @OneToMany
     @JoinColumn(name = "mascota_id")
+    @JsonBackReference
     @NotAudited
     private List<Historia> historias = new ArrayList<>();
 
