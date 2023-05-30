@@ -23,6 +23,12 @@ public class EspecialistaServiceImpl implements IEspecialistaService {
 
     @Transactional(readOnly = true)
     @Override
+    public List<Especialista> listarEspecialistasHabilitados() {
+        return (List<Especialista>) especialistaDao.obtenerEspecialistaSHabilitados();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
     public Especialista obtenerEspecialistaPorId(Integer id) {
         return especialistaDao.findById(id).orElse(null);
     }

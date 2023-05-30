@@ -8,6 +8,8 @@ public interface IServicioService {
 
     public List<Servicio> listarServicios();
 
+    public List<Servicio> listarServiciosHabilitados();
+
     public Servicio obtenerServicioPorId(Integer id);
 
     public Servicio guardarServicio(Servicio servicio);

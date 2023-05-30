@@ -41,7 +41,7 @@ public class Servicio implements Serializable {
     private float servicioPrecio;
 
     @Column(name = "servicio_fechacreacion", length = 50)
-    private String servicioFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
+    private String servicioFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
     @Column(name = "servicio_estado", length = 50)
     private String servicioEstado = "Habilitado";

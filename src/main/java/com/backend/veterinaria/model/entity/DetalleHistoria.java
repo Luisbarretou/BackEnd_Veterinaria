@@ -29,7 +29,7 @@ public class DetalleHistoria implements Serializable {
     private Integer detHistoriaId;
 
     @Column(name = "dethistoria_fechacreacion", length = 50)
-    private String detHistoriaFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
+    private String detHistoriaFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
     @Column(name = "dethistoria_fechaprogramada", length = 50)
     private String detHistoriaFechaProgramada;
@@ -54,7 +54,7 @@ public class DetalleHistoria implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "historia_id")
-    //@JsonBackReference
+    @JsonBackReference
     @Audited
     private Historia historia;
 

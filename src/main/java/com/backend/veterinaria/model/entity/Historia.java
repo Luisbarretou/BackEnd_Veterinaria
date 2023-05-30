@@ -10,6 +10,8 @@ import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,13 +32,13 @@ public class Historia implements Serializable {
     private Integer historiaId;
 
     @Column(name = "historia_fechacreacion")
-    private String historiaFechaCreacion;
+    private String historiaFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));;
 
     @Column(name = "historia_estado", length = 50)
     private String historiaEstado = "Habilitado";
 
     @ManyToOne
-    @JoinColumn(name = "mascota_id")
+    @JoinColumn(name = "mascota_id", nullable = true)
     @Audited
     private Mascota mascota;
 

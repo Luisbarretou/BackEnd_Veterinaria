@@ -50,7 +50,7 @@ public class Cliente implements Serializable {
     private String clienteEstado = "Habilitado";
 
     @Column(length = 50,name = "cliente_fchacreacion")
-    private String clienteFchaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
+    private String clienteFchaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
     @OneToMany
     @JoinColumn(name = "cliente_id")

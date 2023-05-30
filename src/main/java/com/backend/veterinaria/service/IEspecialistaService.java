@@ -8,6 +8,8 @@ public interface IEspecialistaService {
 
     public List<Especialista> listarEspecialistas();
 
+    public List<Especialista> listarEspecialistasHabilitados();
+
     public Especialista obtenerEspecialistaPorId(Integer id);
 
     public Especialista guardarEspecialista(Especialista especialista);

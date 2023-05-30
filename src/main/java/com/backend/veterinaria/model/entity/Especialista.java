@@ -44,7 +44,7 @@ public class Especialista implements Serializable {
     private String especialistaArea;
 
     @Column(name = "especialista_fechacreacion", length = 50)
-    private String especialistaFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
+    private String especialistaFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
     @Column(name = "especialista_estado", length = 50)
     private String especialistaEstado = "Habilitado";

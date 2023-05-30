@@ -21,10 +21,10 @@ public class HistoriaController {
         return historiaService.listarHistorias();
     }
 
-    @GetMapping("/historias/habilitadas")
+    /*@GetMapping("/historias/habilitadas")
     public List<Historia> listaHistoriasHabilitadas(){
         return historiaService.listarHistoriasHabilitadas();
-    }
+    }*/
 
     @GetMapping("/historias/{id}")
     public Historia detalleHistoria(@PathVariable Integer id){
@@ -47,7 +47,8 @@ public class HistoriaController {
     }
 
     @PutMapping("/historias/{id}/inhabilitar")
-    public Historia inhabilitarHistoria(@PathVariable Integer id){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Historia inhabilitaHistoria(@PathVariable Integer id){
         Historia historiaActual = historiaService.obtenerHistoriaPorId(id);
         historiaActual.setHistoriaEstado("Inhabilitado");
         return historiaService.guardarHistoria(historiaActual);

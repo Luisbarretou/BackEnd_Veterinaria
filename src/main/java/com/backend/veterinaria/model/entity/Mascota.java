@@ -56,7 +56,7 @@ public class Mascota implements Serializable {
     private String mascotaEstado = "Habilitado";
 
     @Column(name = "mascota_fchacreacion", length = 50)
-    private String mascotaFchaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss"));
+    private String mascotaFchaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
