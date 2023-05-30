@@ -7,4 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface IHistoriaDao extends CrudRepository<Historia, Integer> {
+
+    @Query("SELECT h FROM Historia h WHERE h.estadoHistoria='Habilitado'")
+    public List<Historia> obtenerHistoriasHabilitadas();
 }

@@ -23,6 +23,11 @@ public class MascotaController {
         return mascotaService.listarMascotas();
     }
 
+    @GetMapping("/mascotas/habilitadas")
+    public List<Mascota> listaMascotasHabilitadas(){
+        return mascotaService.listarMascotasHabilitadas();
+    }
+
     @GetMapping("/mascotas/{id}")
     public Mascota detalleMascota(@PathVariable Integer id){
         return mascotaService.obtenerMascotaPorId(id);

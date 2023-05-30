@@ -42,6 +42,7 @@ public class Historia implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "historia_id")
+    @JsonBackReference
     @NotAudited
     private List<DetalleHistoria> detallesHistoria = new ArrayList<>();
 

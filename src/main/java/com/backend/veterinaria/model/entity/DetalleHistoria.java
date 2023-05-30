@@ -54,7 +54,7 @@ public class DetalleHistoria implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "historia_id")
-    @JsonBackReference
+    //@JsonBackReference
     @Audited
     private Historia historia;
 

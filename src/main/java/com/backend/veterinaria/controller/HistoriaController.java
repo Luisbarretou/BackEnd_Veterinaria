@@ -21,6 +21,11 @@ public class HistoriaController {
         return historiaService.listarHistorias();
     }
 
+    @GetMapping("/historias/habilitadas")
+    public List<Historia> listaHistoriasHabilitadas(){
+        return historiaService.listarHistoriasHabilitadas();
+    }
+
     @GetMapping("/historias/{id}")
     public Historia detalleHistoria(@PathVariable Integer id){
         return historiaService.obtenerHistoriaPorId(id);

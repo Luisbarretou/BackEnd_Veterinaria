@@ -8,6 +8,8 @@ public interface IMascotaService {
 
     public List<Mascota> listarMascotas();
 
+    public List<Mascota> listarMascotasHabilitadas();
+
     public Mascota obtenerMascotaPorId(Integer id);
 
     public Mascota guardarMascota(Mascota mascota);

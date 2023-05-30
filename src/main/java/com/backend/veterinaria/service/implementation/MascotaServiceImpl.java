@@ -23,6 +23,12 @@ public class MascotaServiceImpl implements IMascotaService {
 
     @Transactional(readOnly = true)
     @Override
+    public List<Mascota> listarMascotasHabilitadas() {
+        return (List<Mascota>) mascotaDao.obtenerMascotasHabilitadas();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
     public Mascota obtenerMascotaPorId(Integer id) {
         return mascotaDao.findById(id).orElse(null);
     }

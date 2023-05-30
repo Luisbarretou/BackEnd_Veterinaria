@@ -23,6 +23,12 @@ public class HistoriaServiceImpl implements IHistoriaService {
 
     @Transactional(readOnly = true)
     @Override
+    public List<Historia> listarHistoriasHabilitadas() {
+        return (List<Historia>) historiaDao.obtenerHistoriasHabilitadas();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
     public Historia obtenerHistoriaPorId(Integer id) {
         return historiaDao.findById(id).orElse(null);
     }
