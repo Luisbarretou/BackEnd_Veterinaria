@@ -1,11 +1,24 @@
 package com.backend.veterinaria.model.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.hibernate.envers.Audited;
 
 @Entity
 @Table(name = "proveedor")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Audited
 public class Proveedor implements Serializable {
 
     public static final long serialVersionUID = 7L;
@@ -27,46 +40,14 @@ public class Proveedor implements Serializable {
     @Column(name = "proveedor_direccion", length = 50)
     private String proveedorDireccion;
 
-    public Proveedor() {
-    }
+    @Column(name = "proveedor_correo", length = 50)
+    private String proveedorCorreo;
 
-    public Integer getProveedorId() {
-        return proveedorId;
-    }
+    @Column(name = "proveedor_fchacreacion", length = 50)
+    private String proveedorFchaCreacion = LocalDateTime.now()
+            .format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
-    public void setProveedorId(Integer proveedorId) {
-        this.proveedorId = proveedorId;
-    }
+    @Column(name = "proveedor_estado", length = 50)
+    private String proveedorEstado = "Habilitado";
 
-    public String getProveedorRUC() {
-        return proveedorRUC;
-    }
-
-    public void setProveedorRUC(String proveedorRUC) {
-        this.proveedorRUC = proveedorRUC;
-    }
-
-    public String getProveedorRazonSocial() {
-        return proveedorRazonSocial;
-    }
-
-    public void setProveedorRazonSocial(String proveedorRazonSocial) {
-        this.proveedorRazonSocial = proveedorRazonSocial;
-    }
-
-    public String getProveedorTelefono() {
-        return proveedorTelefono;
-    }
-
-    public void setProveedorTelefono(String proveedorTelefono) {
-        this.proveedorTelefono = proveedorTelefono;
-    }
-
-    public String getProveedorDireccion() {
-        return proveedorDireccion;
-    }
-
-    public void setProveedorDireccion(String proveedorDireccion) {
-        this.proveedorDireccion = proveedorDireccion;
-    }
 }

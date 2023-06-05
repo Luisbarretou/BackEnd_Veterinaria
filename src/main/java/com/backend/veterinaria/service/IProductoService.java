@@ -8,6 +8,8 @@ public interface IProductoService {
 
     public List<Producto> listarProductos();
 
+    public List<Producto> listarProductosHabilitados();
+
     public Producto obtenerProductoPorId(Integer id);
 
     public Producto guardarProducto(Producto producto);

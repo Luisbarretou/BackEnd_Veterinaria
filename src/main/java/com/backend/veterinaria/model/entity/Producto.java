@@ -1,13 +1,26 @@
 package com.backend.veterinaria.model.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.envers.Audited;
+
 @Entity
 @Table(name = "producto")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Audited
 public class Producto implements Serializable {
 
     public static final long serialVersionUID = 1L;
@@ -29,60 +42,18 @@ public class Producto implements Serializable {
     @Column(name = "producto_descripcion", length = 250)
     private String productoDescripcion;
 
+    @Column(name = "producto_precio", columnDefinition = "decimal(8,2)")
+    private Float productoPrecio;
+
+    @Column(name = "producto_fchacreacion", length = 50)
+    private String productoFchaCreacion = LocalDateTime.now()
+            .format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+
+    @Column(name = "producto_estado", length = 50)
+    private String productoEstado = "Habilitado";
+
     @ManyToMany
-    @JoinTable(name = "detalle_prod_provee",
-            joinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "producto_id"),
-            inverseJoinColumns = @JoinColumn(name = "proveedor_id", referencedColumnName = "proveedor_id"))
+    @JoinTable(name = "detalle_prod_provee", joinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "producto_id"), inverseJoinColumns = @JoinColumn(name = "proveedor_id", referencedColumnName = "proveedor_id"))
     private List<Proveedor> proveedores = new ArrayList<>();
 
-    public Producto() {
-    }
-
-    public Integer getProductoId() {
-        return productoId;
-    }
-
-    public void setProductoId(Integer productoId) {
-        this.productoId = productoId;
-    }
-
-    public String getProductoNombre() {
-        return productoNombre;
-    }
-
-    public void setProductoNombre(String productoNombre) {
-        this.productoNombre = productoNombre;
-    }
-
-    public String getProductoMarca() {
-        return productoMarca;
-    }
-
-    public void setProductoMarca(String productoMarca) {
-        this.productoMarca = productoMarca;
-    }
-
-    public String getProductoCategoria() {
-        return productoCategoria;
-    }
-
-    public void setProductoCategoria(String productoCategoria) {
-        this.productoCategoria = productoCategoria;
-    }
-
-    public String getProductoDescripcion() {
-        return productoDescripcion;
-    }
-
-    public void setProductoDescripcion(String productoDescripcion) {
-        this.productoDescripcion = productoDescripcion;
-    }
-
-    public List<Proveedor> getProveedores() {
-        return proveedores;
-    }
-
-    public void setProveedores(List<Proveedor> proveedores) {
-        this.proveedores = proveedores;
-    }
 }

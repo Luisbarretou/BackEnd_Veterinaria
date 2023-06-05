@@ -8,6 +8,8 @@ public interface IProveedorService {
 
     public List<Proveedor> listarProveedores();
 
+    public List<Proveedor> listarProveedoresHabilitados();
+
     public Proveedor obtenerProveedorPorId(Integer id);
 
     public Proveedor guardarProveedor(Proveedor proveedor);
