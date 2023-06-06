@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("api")
 public class HistoriaController {
 
@@ -17,29 +17,29 @@ public class HistoriaController {
     private IHistoriaService historiaService;
 
     @GetMapping("/historias")
-    public List<Historia> listaHistorias(){
+    public List<Historia> listaHistorias() {
         return historiaService.listarHistorias();
     }
 
-    /*@GetMapping("/historias/habilitadas")
-    public List<Historia> listaHistoriasHabilitadas(){
+    @GetMapping("/historias/habilitadas")
+    public List<Historia> listaHistoriasHabilitadas() {
         return historiaService.listarHistoriasHabilitadas();
-    }*/
+    }
 
     @GetMapping("/historias/{id}")
-    public Historia detalleHistoria(@PathVariable Integer id){
+    public Historia detalleHistoria(@PathVariable Integer id) {
         return historiaService.obtenerHistoriaPorId(id);
     }
 
     @PostMapping("/historias")
     @ResponseStatus(HttpStatus.CREATED)
-    public Historia registroHistoria(@RequestBody Historia historia){
+    public Historia registroHistoria(@RequestBody Historia historia) {
         return historiaService.guardarHistoria(historia);
     }
 
     @PutMapping("/historias/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Historia actualizaHistoria(@PathVariable Integer id, @RequestBody Historia historia){
+    public Historia actualizaHistoria(@PathVariable Integer id, @RequestBody Historia historia) {
         Historia historiaActual = historiaService.obtenerHistoriaPorId(id);
         historiaActual.setHistoriaEstado(historia.getHistoriaEstado());
         historiaActual.setMascota(historia.getMascota());
@@ -48,7 +48,7 @@ public class HistoriaController {
 
     @PutMapping("/historias/{id}/inhabilitar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Historia inhabilitaHistoria(@PathVariable Integer id){
+    public Historia inhabilitaHistoria(@PathVariable Integer id) {
         Historia historiaActual = historiaService.obtenerHistoriaPorId(id);
         historiaActual.setHistoriaEstado("Inhabilitado");
         return historiaService.guardarHistoria(historiaActual);

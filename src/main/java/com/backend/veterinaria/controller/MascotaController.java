@@ -1,8 +1,6 @@
 package com.backend.veterinaria.controller;
 
-import com.backend.veterinaria.model.entity.Cliente;
 import com.backend.veterinaria.model.entity.Mascota;
-import com.backend.veterinaria.service.IClienteService;
 import com.backend.veterinaria.service.IMascotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -21,11 +21,11 @@ public class HistoriaServiceImpl implements IHistoriaService {
         return (List<Historia>) historiaDao.findAll();
     }
 
-    /*@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     @Override
     public List<Historia> listarHistoriasHabilitadas() {
         return (List<Historia>) historiaDao.obtenerHistoriasHabilitadas();
-    }*/
+    }
 
     @Transactional(readOnly = true)
     @Override

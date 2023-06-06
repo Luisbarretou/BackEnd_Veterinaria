@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface IHistoriaDao extends CrudRepository<Historia, Integer> {
 
-    //@Query("SELECT h FROM Historia h WHERE h.estadoHistoria='Habilitado'")
-    //public List<Historia> obtenerHistoriasHabilitadas();
+    @Query("SELECT h FROM Historia h WHERE h.historiaEstado='Habilitado'")
+    public List<Historia> obtenerHistoriasHabilitadas();
 }
