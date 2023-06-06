@@ -56,7 +56,6 @@ public class Servicio implements Serializable {
     @JoinTable(name = "detalle_serv_prod",
             joinColumns = @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id"),
             inverseJoinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "producto_id"))
-    @NotAudited
     private List<Producto> productos = new ArrayList<>();
 
 }
