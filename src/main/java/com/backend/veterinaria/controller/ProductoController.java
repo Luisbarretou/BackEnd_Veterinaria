@@ -63,6 +63,14 @@ public class ProductoController {
         return productoService.guardarProducto(productoActual);
     }
 
+    @PutMapping("/productos/{id}/inhabilitar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Producto inhabilitarProducto(@PathVariable Integer id) {
+        Producto productoActual = productoService.obtenerProductoPorId(id);
+        productoActual.setProductoEstado("Inhabilitado");
+        return productoService.guardarProducto(productoActual);
+    }
+
     @DeleteMapping("/productos/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminaProducto(@PathVariable Integer id) {
