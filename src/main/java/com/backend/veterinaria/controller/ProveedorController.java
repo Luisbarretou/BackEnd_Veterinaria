@@ -62,6 +62,14 @@ public class ProveedorController {
         return proveedorService.guardarProveedor(proveedorActual);
     }
 
+    @PutMapping("/proveedores/{id}/inhabilitar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Proveedor inhabilitarProveedor(@PathVariable Integer id) {
+        Proveedor proveedorActual = proveedorService.obtenerProveedorPorId(id);
+        proveedorActual.setProveedorEstado("Inhabilitado");
+        return proveedorService.guardarProveedor(proveedorActual);
+    }
+
     @DeleteMapping("/proveedores/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminaProveedor(@PathVariable Integer id) {
