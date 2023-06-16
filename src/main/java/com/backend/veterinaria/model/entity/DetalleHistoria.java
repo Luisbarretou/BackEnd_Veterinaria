@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -55,17 +56,17 @@ public class DetalleHistoria implements Serializable {
     @ManyToOne
     @JoinColumn(name = "historia_id")
     @JsonBackReference
-    @Audited
+    @NotAudited
     private Historia historia;
 
     @ManyToOne
     @JoinColumn(name = "servicio_id")
-    @Audited
+    @NotAudited
     private Servicio servicio;
 
     @ManyToOne
     @JoinColumn(name = "especialista_id")
-    @Audited
+    @NotAudited
     private Especialista especialista;
 
 }
