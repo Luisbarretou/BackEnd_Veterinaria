@@ -51,7 +51,6 @@ public class ProductoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Producto actualizaProducto(@PathVariable Integer id, @RequestBody Producto producto) {
         Producto productoActual = productoService.obtenerProductoPorId(id);
-
         productoActual.setProductoNombre(producto.getProductoNombre());
         productoActual.setProductoMarca(producto.getProductoMarca());
         productoActual.setProductoCategoria(producto.getProductoCategoria());
@@ -59,7 +58,6 @@ public class ProductoController {
         productoActual.setProductoPrecio(producto.getProductoPrecio());
         productoActual.setProductoEstado(producto.getProductoEstado());
         productoActual.setProveedores(producto.getProveedores());
-
         return productoService.guardarProducto(productoActual);
     }
 

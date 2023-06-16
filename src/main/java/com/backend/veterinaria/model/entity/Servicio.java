@@ -13,7 +13,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "servicio")
@@ -41,7 +43,8 @@ public class Servicio implements Serializable {
     private float servicioPrecio;
 
     @Column(name = "servicio_fechacreacion", length = 50)
-    private String servicioFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+    private String servicioFechaCreacion = LocalDateTime.now()
+            .format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
     @Column(name = "servicio_estado", length = 50)
     private String servicioEstado = "Habilitado";
@@ -53,9 +56,7 @@ public class Servicio implements Serializable {
     private List<DetalleHistoria> detallesHistoria = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "detalle_serv_prod",
-            joinColumns = @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id"),
-            inverseJoinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "producto_id"))
-    private List<Producto> productos = new ArrayList<>();
+    @JoinTable(name = "detalle_serv_prod", joinColumns = @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id"), inverseJoinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "producto_id"))
+    private Set<Producto> productos = new HashSet<>();
 
 }
