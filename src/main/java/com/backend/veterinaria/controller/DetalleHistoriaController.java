@@ -38,8 +38,7 @@ public class DetalleHistoriaController {
 
     @PostMapping("/detalleHistoria/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public DetalleHistoria registroDetalleHistoria(@PathVariable Integer id,
-            @RequestBody DetalleHistoria detalleHistoria) {
+    public DetalleHistoria registroDetalleHistoria(@PathVariable Integer id, @RequestBody DetalleHistoria detalleHistoria) {
         Historia historiaNueva = new Historia();
         historiaNueva.setHistoriaId(id);
 
@@ -49,8 +48,7 @@ public class DetalleHistoriaController {
 
     @PutMapping("/detalleHistoria/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public DetalleHistoria actualizaDetalleHistoria(@PathVariable Integer id,
-            @RequestBody DetalleHistoria detalleHistoria) {
+    public DetalleHistoria actualizaDetalleHistoria(@PathVariable Integer id, @RequestBody DetalleHistoria detalleHistoria) {
         DetalleHistoria detalleActual = detalleHistoriaService.obtenerDetalleHistoriaPorId(id);
         detalleActual.setDetHistoriaFechaProgramada(detalleHistoria.getDetHistoriaFechaProgramada());
         detalleActual.setDetHistoriaFechaAplicada(detalleHistoria.getDetHistoriaFechaAplicada());
@@ -64,7 +62,7 @@ public class DetalleHistoriaController {
         return detalleHistoriaService.guardarDetalleHistoria(detalleActual);
     }
 
-    @PutMapping("/detalleHistoria/{id}")
+    @PutMapping("/detalleHistoria/{id}/inhabilitar")
     @ResponseStatus(HttpStatus.CREATED)
     public DetalleHistoria inhabilitaDetalleHistoria(@PathVariable Integer id) {
         DetalleHistoria detalleActual = detalleHistoriaService.obtenerDetalleHistoriaPorId(id);
