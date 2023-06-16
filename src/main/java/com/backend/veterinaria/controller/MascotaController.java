@@ -41,7 +41,6 @@ public class MascotaController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mascota actualizaMascota(@PathVariable Integer id, @RequestBody Mascota mascota){
         Mascota mascotaActual = mascotaService.obtenerMascotaPorId(id);
-
         mascotaActual.setMascotaNombre(mascota.getMascotaNombre());
         mascotaActual.setMascotaTipo(mascota.getMascotaTipo());
         mascotaActual.setMascotaRaza(mascota.getMascotaRaza());
@@ -51,7 +50,6 @@ public class MascotaController {
         mascotaActual.setMascotaObservaciones(mascota.getMascotaObservaciones());
         mascotaActual.setMascotaEstado(mascota.getMascotaEstado());
         mascotaActual.setCliente(mascota.getCliente());
-
         return mascotaService.guardarMascota(mascotaActual);
     }
 

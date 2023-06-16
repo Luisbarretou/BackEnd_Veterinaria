@@ -55,7 +55,7 @@ public class ServicioController {
         servicioActual.setServicioTipo(servicio.getServicioTipo());
         servicioActual.setServicioPrecio(servicio.getServicioPrecio());
         servicioActual.setServicioEstado(servicio.getServicioEstado());
-        
+        servicioActual.setProductos(servicio.getProductos());
         return servicioService.guardarServicio(servicioActual);
     }
 
