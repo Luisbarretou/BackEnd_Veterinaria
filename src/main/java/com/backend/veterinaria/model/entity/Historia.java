@@ -24,7 +24,7 @@ import java.util.List;
 @Audited
 public class Historia implements Serializable {
 
-    private static final long serialVersionUID =1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,8 @@ public class Historia implements Serializable {
     private Integer historiaId;
 
     @Column(name = "historia_fechacreacion")
-    private String historiaFechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));;
+    private String historiaFechaCreacion = LocalDateTime.now()
+            .format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));;
 
     @Column(name = "historia_estado", length = 50)
     private String historiaEstado = "Habilitado";
@@ -44,7 +45,6 @@ public class Historia implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "historia_id")
-    @JsonBackReference
     @NotAudited
     private List<DetalleHistoria> detallesHistoria = new ArrayList<>();
 
