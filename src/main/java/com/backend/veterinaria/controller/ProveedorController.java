@@ -51,14 +51,12 @@ public class ProveedorController {
     @ResponseStatus(HttpStatus.CREATED)
     public Proveedor actualizaProveedor(@PathVariable Integer id, @RequestBody Proveedor proveedor) {
         Proveedor proveedorActual = proveedorService.obtenerProveedorPorId(id);
-
         proveedorActual.setProveedorRUC(proveedor.getProveedorRUC());
         proveedorActual.setProveedorRazonSocial(proveedor.getProveedorRazonSocial());
         proveedorActual.setProveedorTelefono(proveedor.getProveedorTelefono());
         proveedorActual.setProveedorDireccion(proveedor.getProveedorDireccion());
         proveedorActual.setProveedorCorreo(proveedor.getProveedorCorreo());
         proveedorActual.setProveedorEstado(proveedor.getProveedorEstado());
-
         return proveedorService.guardarProveedor(proveedorActual);
     }
 

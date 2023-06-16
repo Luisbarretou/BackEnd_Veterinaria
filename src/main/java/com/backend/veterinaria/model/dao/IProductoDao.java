@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface IProductoDao extends CrudRepository<Producto, Integer> {
 
-    @Query("SELECT p FROM Producto p WHERE p.productoEstado = 'Habilitado'")
+    @Query("SELECT p FROM Producto p WHERE p.productoEstado != 'Inhabilitado'")
     public List<Producto> obtenerProductosHabilitados();
 }

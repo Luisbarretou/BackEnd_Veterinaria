@@ -9,8 +9,8 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.envers.Audited;
 
@@ -53,7 +53,9 @@ public class Producto implements Serializable {
     private String productoEstado = "Habilitado";
 
     @ManyToMany
-    @JoinTable(name = "detalle_prod_provee", joinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "producto_id"), inverseJoinColumns = @JoinColumn(name = "proveedor_id", referencedColumnName = "proveedor_id"))
-    private List<Proveedor> proveedores = new ArrayList<>();
+    @JoinTable(name = "detalle_prod_provee",
+            joinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "proveedor_id", referencedColumnName = "proveedor_id"))
+    private Set<Proveedor> proveedores = new HashSet<>();
 
 }
