@@ -27,7 +27,7 @@ public class DetalleHistoriaController {
     private IDetalleHistoriaService detalleHistoriaService;
 
     @GetMapping("/detalleHistoria")
-    public List<DetalleHistoria> listarDetalleHistorias() {
+    public List<DetalleHistoria> listaDetalleHistorias() {
         return detalleHistoriaService.listarDetallesHistoria();
     }
 
